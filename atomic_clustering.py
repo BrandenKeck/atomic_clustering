@@ -41,20 +41,23 @@ class Universe():
 		for atom1 in self.atoms:
 			atom1.vel = np.zeros(len(atom1.vel))
 			for atom2 in self.atoms:
-				atom1.vel = atom1.vel + self.DLVO(atom1, atom2)
+				if atom1 != atom2:
+					atom1.vel = atom1.vel + self.DLVO(atom1, atom2)
 
 		for atom in self.atoms:
 			atom.pos = atom.pos + atom.vel
 
 	# Get the DLVO result
 	def DLVO(self, atom1, atom2):
-		dist = np.linalg.norm(atom1.pos - atom2.pos)
-		if dist == 0:
-			return np.zeros(len(atom1.vel))
+		dist = np.linalg.norm(atom2.pos - atom1.pos)
 		HA = (self.a)/(np.exp(self.b*dist))
 		ER = (self.c)/(self.d*dist**2)
-		E = np.abs(HA - ER)
-		return E * (atom1.pos - atom2.pos)/dist
+		E = HA - ER
+		return E * (atom2.pos - atom1.pos)/dist
+
+	'''
+	DELETE BELOW HERE
+	'''
 
 	# TEMP - FOR DEBUGGING
 	def draw_universe_2d(self):

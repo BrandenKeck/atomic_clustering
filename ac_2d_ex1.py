@@ -5,7 +5,7 @@ from matplotlib import animation
 from atomic_clustering import Universe, Atom
 
 # Number of samples per cluster
-n = 100
+n = 50
 
 # Bullseye Clusters
 X1 = np.random.multivariate_normal([0,0], [[1,0],[0,1]], n)
@@ -18,12 +18,12 @@ X2 = np.array(X2)
 data = np.concatenate((X1, X2), 0)
 
 # Set dlvo params
-params = [1, 10, 1/50, 10]
+params = [5/6, 10, 1/60, 10]
 
 # Create universe
 ness = Universe(data, params)
 fr = []
-num = 50
+num = 30
 for i in np.arange(num):
     print(i)
     ness.attraction()

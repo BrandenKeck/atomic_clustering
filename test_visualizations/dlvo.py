@@ -12,9 +12,9 @@ def DLVO(d, c1, c2, c3, c4):
 if __name__ == "__main__":
     
     # Define DLVO parameters
-    alpha1 = 1
+    alpha1 = 5
     alpha2 = 10
-    beta1 = 1/50
+    beta1 = 1/10
     beta2 = 10
     
     X = np.arange(0.05, 1, 0.001)
